@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Checking VerneMQ configuration..."
+
 sed -i.bak -r "s/-setcookie.+/-setcookie ${DOCKER_VERNEMQ_DISTRIBUTED_COOKIE}/" /vernemq/etc/vm.args
 sed -i.bak -r "s/-name.+/-name ${DOCKER_VERNEMQ_NODENAME}/" /vernemq/etc/vm.args
 
@@ -31,7 +33,7 @@ trap 'sigterm_handler' SIGTERM
 
 # Start VerneMQ
 /vernemq/bin/vernemq console -noshell -noinput $@ &
-sleep 30 && echo "Adding API_KEY..." && /vernemq/bin/vmq-admin api-key add key=${API_KEY:-DEFAULT}
+sleep 30 && echo "Adding API_KEY..." && /vernemq/bin/vmq-admin api-key add key=${APIKEY:-DEFAULT}
 vmq-admin api-key show
 wait $pid
 

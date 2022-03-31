@@ -1,4 +1,4 @@
-FROM vernemq/vernemq:1.11.0
+FROM vernemq/vernemq:1.12.3
 
 LABEL maintainer="Domenico Briganti <domenico.briganti@kalpa.it>"
 
